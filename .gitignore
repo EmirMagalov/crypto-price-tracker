@@ -1,0 +1,55 @@
+Content/
+Content/Video/*.mp4
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.env
+*.venv
+env/
+venv/
+*.sqlite3
+*.log
+
+# Django
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+media/
+staticfiles/
+node_modules/
+
+# VSCode / PyCharm / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Node / Vue
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.local
+
+# Others
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# Ignore backup or temp video files (optional)
+taskmanager/media/videos/**/temp_*
+taskmanager/media/videos/**/preview_*
