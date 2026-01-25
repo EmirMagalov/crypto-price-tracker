@@ -145,16 +145,16 @@ onMounted(() => {
         <div class="min-h-30">
 
           <div class=" w-32 text-white font-bold text-xl">
-
-            <!-- Текущий выбранный тикер -->
+          <div class="bg-[#eecf3c] flex gap-5 items-center justify-center " @click="active = !active;getPriceLatest()">
             <p
-                class="cursor-pointer bg-[#eecf3c] p-2 text-2xl text-center rounded"
-                @click="active = !active;getPriceLatest()"
+                class="cursor-pointer  p-2 text-2xl text-center rounded"
+
             >
               {{ activeTicker }}
             </p>
-
-            <!-- Список валют -->
+            <p v-show="!active">▼</p>
+            <p v-show="active">▲</p>
+          </div>
             <div
                 v-show="active"
                 class=" mt-1 bg-[#eecf3c] text-black rounded shadow-lg z-10"
