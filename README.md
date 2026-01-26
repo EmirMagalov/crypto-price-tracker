@@ -16,7 +16,7 @@
 - Celery
 - Redis
 - aiohttp
-- Vue 3 
+- Vue 3
 - Docker
 
 ## Design Decisions
@@ -38,23 +38,8 @@
 
 ## Запуск проекта
 
-- git clone https://gitlab.com/emir.mahalo-group/crypto-price-tracker.git
-- cd crypto-price-tracker
+- git clone https://gitlab.com/emir.mahalo/price-tracker.git
+- cd price-tracker
 - Создать файл .env
-- Добавить поля:
-
-> FRONTEND_ORIGINS = http://localhost:5173,http://127.0.0.1:5173,http://localhost:8080
-
-> REDIS_URL = redis://redis
-
-> DB_USER = deribitAdmin
-
-> DB_NAME = deribitDb
-
-> DB_PASSWORD = 1234
-
-> DB_PORT = 5432
-
-> DB_HOST = db
-
+- Скопировать поля из .env.example
 - docker-compose up --build

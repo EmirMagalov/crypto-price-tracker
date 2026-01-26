@@ -12,7 +12,7 @@ env/
 venv/
 *.sqlite3
 *.log
-
+!.env.example
 backend/celerybeat-schedule.dat
 backend/celerybeat-schedule.dir
 # VSCode / PyCharm / IDE
