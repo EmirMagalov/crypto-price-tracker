@@ -5,13 +5,12 @@ import time
 import redis
 import json
 from celery import shared_task
-from database import session_local
-from models import Price
-from dotenv import load_dotenv
+from database.connection import session_local
+from models.price import Price
 from asgiref.sync import async_to_sync
-load_dotenv()
-redis_url = os.getenv("REDIS_URL")
-DERIBIT_URL = "https://test.deribit.com/api/v2/public/get_index_price?index_name={currency}"
+from core.config import settings
+redis_url = settings.redis_url
+DERIBIT_URL = settings.deribit_url
 redis_url = redis_url.replace('redis://', '')
 r = redis.Redis(host=redis_url, port=6379, db=0)
 

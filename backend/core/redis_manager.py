@@ -2,12 +2,11 @@ import os
 import json
 import asyncio
 import redis.asyncio as aioredis
-from ws_manager import ConnectionManager
-from dotenv import load_dotenv
-load_dotenv()
+from websocket.ws_manager import ConnectionManager
+from core.config import settings
 manager = ConnectionManager()
 
-redis_url = os.getenv("REDIS_URL")
+redis_url = settings.redis_url
 
 async def redis_listener():
     redis = aioredis.from_url(f"{redis_url}:6379/0")

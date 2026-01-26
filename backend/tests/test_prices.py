@@ -1,4 +1,4 @@
-from models import Price
+from models.price import Price
 import time
 
 

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, Float, BigInteger
-from database import Base
+from database.connection import Base
 
 
 class Price(Base):

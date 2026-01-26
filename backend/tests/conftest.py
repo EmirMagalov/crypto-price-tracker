@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from main import app,get_db
-from models import Base
+from models.price import Base
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 
