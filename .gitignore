@@ -14,7 +14,7 @@ venv/
 *.log
 
 backend/celerybeat-schedule.dat
-
+backend/celerybeat-schedule.dir
 # VSCode / PyCharm / IDE
 .vscode/
 .idea/
