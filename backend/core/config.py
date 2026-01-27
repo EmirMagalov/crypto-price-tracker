@@ -25,6 +25,8 @@ class Settings(BaseSettings):
     def redis_url(self) -> str:
         """Генерируем стандартный Redis URL из хоста и порта"""
         return f"redis://{self.redis_host}:{self.redis_port}"
-
+    @property
+    def sqlalchemy_url(self) -> str:
+        return f"postgresql+psycopg2://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
 
 settings = Settings()
