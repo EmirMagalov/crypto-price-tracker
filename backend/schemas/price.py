@@ -7,8 +7,7 @@ class PriceBase(BaseModel):
     timestamp: int
 
 
-class PriceCreate(PriceBase):
-    ...
+class PriceCreate(PriceBase): ...
 
 
 class Price(PriceBase):

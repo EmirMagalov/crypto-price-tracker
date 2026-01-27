@@ -2,9 +2,13 @@ import os
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
+
+
 class Settings(BaseSettings):
     deribit_url: str = Field(..., env="DERIBIT_URL")
-    redis_url: str = Field(..., env="REDIS_URL")
+    base_redis: str = Field(..., env="BASE_REDIS")
+    redis_celery_0: str = Field(..., env="REDIS_CELERY_0")
+    redis_celery_1: str = Field(..., env="REDIS_CELERY_1")
     db_user: str = Field(..., env="DB_USER")
     db_name: str = Field(..., env="DB_NAME")
     db_password: str = Field(..., env="DB_PASSWORD")
@@ -15,12 +19,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(__file__), "../../.env"),
         env_file_encoding="utf-8",
-        extra="allow"  # теперь лишние поля из .env не вызывают ошибку
+        extra="allow",  # теперь лишние поля из .env не вызывают ошибку
     )
 
 
-
 settings = Settings()
-
-print(settings.redis_url)
-

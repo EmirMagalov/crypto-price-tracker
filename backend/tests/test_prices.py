@@ -3,11 +3,7 @@ import time
 
 
 def test_get_prices(client, db):
-    price = Price(
-        ticker="btc_usd",
-        price=50000,
-        timestamp=int(time.time())
-    )
+    price = Price(ticker="btc_usd", price=50000, timestamp=int(time.time()))
     db.add(price)
     db.commit()
 
@@ -20,10 +16,12 @@ def test_get_prices(client, db):
 
 
 def test_get_latest_price(client, db):
-    db.add_all([
-        Price(ticker="btc_usd", price=100, timestamp=1),
-        Price(ticker="btc_usd", price=200, timestamp=2),
-    ])
+    db.add_all(
+        [
+            Price(ticker="btc_usd", price=100, timestamp=1),
+            Price(ticker="btc_usd", price=200, timestamp=2),
+        ]
+    )
     db.commit()
 
     response = client.get("/prices/latest/?ticker=btc_usd")
@@ -35,13 +33,10 @@ def test_get_latest_price(client, db):
 def test_filter_by_time(client, db):
     db.add(
         Price(ticker="btc_usd", price=200, timestamp=1769179267),
-
     )
     db.commit()
 
-    response = client.get(
-        "/prices/filter/?ticker=btc_usd&date_ts=1769179267"
-    )
+    response = client.get("/prices/filter/?ticker=btc_usd&date_ts=1769179267")
 
     data = response.json()
 

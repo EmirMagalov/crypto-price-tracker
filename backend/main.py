@@ -5,8 +5,10 @@ from models.price import Base
 from database.connection import engine
 from fastapi.middleware.cors import CORSMiddleware
 from core.redis_manager import redis_listener
-from routers import views
+from routers import price
 from core.config import settings
+
+
 async def lifespan(app: FastAPI):
     # Startup
     app.state.redis_task = asyncio.create_task(redis_listener())
@@ -21,7 +23,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-app.include_router(views.router)
+app.include_router(price.router)
 # origins = os.getenv("FRONTEND_ORIGINS", "").split(",")
 origins = settings.frontend_origins
 app.add_middleware(
@@ -33,8 +35,3 @@ app.add_middleware(
 )
 
 Base.metadata.create_all(bind=engine)
-
-
-
-
-

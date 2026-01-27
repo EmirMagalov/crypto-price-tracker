@@ -1,24 +1,27 @@
-import os
 import json
 import asyncio
 import redis.asyncio as aioredis
 from websocket.ws_manager import ConnectionManager
 from core.config import settings
+
 manager = ConnectionManager()
 
-redis_url = settings.redis_url
+redis_celery_0 = settings.redis_celery_0
+
 
 async def redis_listener():
-    redis = aioredis.from_url(f"{redis_url}:6379/0")
+    redis = aioredis.from_url(f"{redis_celery_0}")
     pubsub = redis.pubsub()
     await pubsub.subscribe("prices_channel")
     print("Subscribed to Redis channel")
 
     try:
         while True:
-            message = await pubsub.get_message(ignore_subscribe_messages=True, timeout=1.0)
+            message = await pubsub.get_message(
+                ignore_subscribe_messages=True, timeout=1.0
+            )
             if message is not None:
-                data = json.loads(message['data'])
+                data = json.loads(message["data"])
                 print("Redis message received:", data)
                 await manager.send_message(data)
             await asyncio.sleep(0.01)

@@ -35,12 +35,12 @@ const formatDate = (ts) => {
 }
 const getInitialPrices = async () => {
   try {
-    const btc = await axios.get(`${API_URL}prices/limit/`, {
+    const btc = await axios.get(`${API_URL}price/limit/`, {
       params: {ticker: 'btc_usd'}
     })
     BtcUsd.value = btc.data
 
-    const eth = await axios.get(`${API_URL}prices/limit/`, {
+    const eth = await axios.get(`${API_URL}price/limit/`, {
       params: {ticker: 'eth_usd'}
     })
     EthUsd.value = eth.data
@@ -57,7 +57,7 @@ const otherTickers = computed(() => {
 
 const filterPrice = async () => {
 
-  const {data} = await axios.get(`${API_URL}prices/filter/`, {
+  const {data} = await axios.get(`${API_URL}price/filter/`, {
     params: {
       ticker: activeTicker.value.toLowerCase() + '_usd',
       date_ts: dateTs.value
@@ -73,7 +73,7 @@ const getPriceLatest = async () => {
     const data = await filterPrice()
     priceLatest.value = data
   } else {
-    const {data} = await axios.get(`${API_URL}prices/latest/`, {
+    const {data} = await axios.get(`${API_URL}price/latest/`, {
       params: {
         ticker: activeTicker.value.toLowerCase() + '_usd',
 
@@ -115,7 +115,7 @@ watch(
 )
 
 onMounted(() => {
-  const socket = new WebSocket(`${WS_URL}prices/`)
+  const socket = new WebSocket(`${WS_URL}`)
   socket.onopen = () => console.log("Connected to WebSocket")
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data)
