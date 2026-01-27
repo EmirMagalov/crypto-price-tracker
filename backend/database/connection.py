@@ -4,9 +4,7 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 from core.config import settings
 
-sqlalchemy_url = (
-    settings.sqlalchemy_url
-)
+sqlalchemy_url = settings.sqlalchemy_url
 
 engine = create_engine(sqlalchemy_url, pool_pre_ping=True)
 

@@ -7,10 +7,12 @@ from database.connection import session_local
 from models.price import Price
 
 from core.config import settings
+
 TICKERS = ("btc_usd", "eth_usd")
 redis_host = settings.redis_host
-deribit_url = settings.deribit_url + '/get_index_price?index_name={currency}'
+deribit_url = settings.deribit_url + "/get_index_price?index_name={currency}"
 r = redis.Redis(host=redis_host, port=6379, db=0)
+
 
 async def fetch_index_price(session: aiohttp.ClientSession, url: str) -> float:
     async with session.get(url) as resp:
