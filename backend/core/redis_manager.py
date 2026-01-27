@@ -6,11 +6,11 @@ from core.config import settings
 
 manager = ConnectionManager()
 
-redis_celery_0 = settings.redis_celery_0
+redis_url = settings.redis_url
 
 
 async def redis_listener():
-    redis = aioredis.from_url(f"{redis_celery_0}")
+    redis = aioredis.from_url(f"{redis_url}/0")
     pubsub = redis.pubsub()
     await pubsub.subscribe("prices_channel")
     print("Subscribed to Redis channel")

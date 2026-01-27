@@ -2,9 +2,9 @@ import os
 from celery import Celery
 from core.config import settings
 
-redis_celery_0 = settings.redis_celery_0
-redis_celery_1 = settings.redis_celery_1
-celery_app = Celery("worker", broker=f"{redis_celery_0}", backend=f"{redis_celery_1}")
+redis_url = settings.redis_url
+
+celery_app = Celery("worker", broker=f"{redis_url}/0", backend=f"{redis_url}/1")
 
 celery_app.conf.beat_schedule = {
     "fetch-prices-every-minute": {

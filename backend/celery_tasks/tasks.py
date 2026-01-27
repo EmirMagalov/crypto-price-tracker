@@ -8,9 +8,9 @@ from models.price import Price
 from asgiref.sync import async_to_sync
 from core.config import settings
 
-base_redis = settings.base_redis
+redis_host = settings.redis_host
 deribit_url = settings.deribit_url
-r = redis.Redis(host=base_redis, port=6379, db=0)
+r = redis.Redis(host=redis_host, port=6379, db=0)
 
 
 async def get_prices():
